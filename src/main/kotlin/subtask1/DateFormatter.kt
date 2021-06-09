@@ -1,9 +1,23 @@
 package subtask1
 
-class DateFormatter {
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
-    // TODO: Complete the following function
+class DateFormatter {
+    private val formatter = DateTimeFormatter
+        .ofPattern("dd MMMM, EEEE")
+        .withLocale(Locale.forLanguageTag("Ru"))
+
     fun toTextDay(day: String, month: String, year: String): String {
-        throw NotImplementedError("Not implemented")
+        return try {
+            LocalDate.of(
+                year.toInt(),
+                month.toInt(),
+                day.toInt()
+            ).format(formatter)
+        } catch (e: Exception) {
+            "Такого дня не существует"
+        }
     }
 }
